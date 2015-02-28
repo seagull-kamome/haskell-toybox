@@ -4,7 +4,7 @@
 name:                haskell-toybox
 version:             0.1.0.0
 synopsis:            Playground
--- description:         
+description:         My playground
 license:             BSD3
 license-file:        LICENSE
 author:              Hiroki Hattori
