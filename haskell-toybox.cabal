@@ -15,6 +15,10 @@ build-type:          Simple
 -- extra-source-files:  
 cabal-version:       >=1.10
 
+source-repository head
+  type: git
+  location: git://github.com/seagull-kamome/haskell-toybox.git
+
 library
   exposed-modules:     Control.Category.Natural,
                        Control.Category.Natural.Sum,
