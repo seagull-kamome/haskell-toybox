@@ -23,6 +23,7 @@ library
   exposed-modules:     Control.Category.Natural,
                        Control.Category.Natural.Sum,
                        Control.Category.Natural.Product,
+                       Control.Objective,
                        Relation.Binary.Classes,
                        Relation.Binary.Equational,
                        Algebra.Classes
@@ -34,18 +35,22 @@ library
                        profunctors >= 4.0,
                        contravariant >= 1.0,
                        free >= 4.9,
-                       minioperational >= 0.4.9
+                       minioperational >= 0.4.9,
+                       stm >= 2.2
   -- hs-source-dirs:      
   default-language:    Haskell2010
 
 executable objective-alt
   main-is: Objective-alt.hs
   default-language:    Haskell2010
+  ghc-options: -Wall
   build-depends:       base >=4.6 && <4.8,
                        transformers >= 0.3,
                        bifunctors >= 4.0,
                        profunctors >= 4.0,
                        contravariant >= 1.0,
                        free >= 4.9,
-                       minioperational >= 0.4.9
+                       minioperational >= 0.4.9,
+                       stm >= 2.2,
+                       extensible-effects >= 1.8
  
