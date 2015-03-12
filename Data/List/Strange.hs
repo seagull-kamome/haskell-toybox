@@ -12,6 +12,8 @@ module Data.List.Strange where
 
 import GHC.TypeLits
 import GHC.Exts (Constraint, IsList (..))
+import Data.Maybe (Maybe (..))
+import Prelude (($))
 -- import Data.Void
 
 ----------------------------------------------------------------------------
@@ -20,6 +22,7 @@ data NList :: Nat -> * -> * where
   NNil :: NList 0 a
   NCons :: a -> NList n a -> NList (n + 1) a
 
+type NonNullList a = forall n. NList (n + 1) a
 
 -- nが変化すると型が合わなくなるので，IsListは定義できない
 -- instance IsList (NList n a) where
@@ -72,4 +75,22 @@ type instance NList' 0 a = IList (Const a) 0 0
 type instance NList' n a = forall m. ((m + 1) ~ n) => IList (Const a) m n
 
 -}
+
+----------------------------------------------------------------------------
+
+data Union :: [*] -> * where
+  There :: Union xs -> Union (x ': xs)
+  Here :: x -> Union (x ': xs)
+
+{-
+type family ToMaybes (xs :: [*]) :: [*]
+type instance ToMaybes '[] = '[]
+type instance ToMaybes (x ': xs) = (Maybe x ': ToMaybes xs)
+
+unionToHList :: Union (x ': xs) -> HList (ToMaybes (x ': xs))
+unionToHList (There xs) = HCons Nothing $ unionToHList xs
+unionToHList (Here x) =  HCons (Just x) (rest Proxy) where ...
+-}
+
+
 
