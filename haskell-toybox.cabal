@@ -26,7 +26,8 @@ library
                        Control.Objective,
                        Relation.Binary.Classes,
                        Relation.Binary.Equational,
-                       Algebra.Classes
+                       Algebra.Classes,
+                       Data.List.Strange
   -- other-modules:
   -- other-extensions:    
   build-depends:       base >=4.6 && <4.8,
@@ -54,3 +55,9 @@ executable objective-alt
                        stm >= 2.2,
                        extensible-effects >= 1.8
  
+-- executable remote
+--   main-is: Remote.hs
+--   ghc-options: -Wall
+--   default-language: Haskell2010
+--   build-depends:      base >= 4.6 && <4.8,
+--                     text >= 1.1
