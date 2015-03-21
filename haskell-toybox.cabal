@@ -24,6 +24,7 @@ library
                        Control.Category.Natural.Sum,
                        Control.Category.Natural.Product,
                        Control.Objective,
+                       Control.Impossible,
                        Relation.Binary.Classes,
                        Relation.Binary.Equational,
                        Algebra.Classes,
@@ -38,7 +39,8 @@ library
                        contravariant >= 1.0,
                        free >= 4.9,
                        minioperational >= 0.4.9,
-                       stm >= 2.2
+                       stm >= 2.2,
+                       hashtables >= 1.1
   -- hs-source-dirs:      
   default-language:    Haskell2010
   ghc-options: -Wall
