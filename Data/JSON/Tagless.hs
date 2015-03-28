@@ -11,12 +11,18 @@ import Data.List (intersperse)
 ----------------------------------------------------------------------------
 
 class JSON a where
-  jsNum :: Double -> a
-  jsString :: String -> a
+  jsNum :: Double -> a    -- FIXME: 整数は整数のまま扱いたい
+  jsString :: String -> a -- FIXME: Textも扱いたい
   jsBool :: Bool -> a
   jsNull :: a
   jsArray :: [a] -> a
   jsDic :: [(String, a)] -> a
+
+jsFalse, jsTrue :: JSON a => a
+jsTrue = jsBool True
+{-# INLINE jsTrue #-}
+jsFalse = jsBool False
+{-# INLINE jsFalse #-}
 
 ----------------------------------------------------------------------------
 
@@ -31,6 +37,7 @@ instance JSON JSRenderer where
 
 instance Show JSRenderer where
   show = runJSRenderer
+  {-# INLINE show #-}
 
 ----------------------------------------------------------------------------
 
@@ -70,6 +77,13 @@ toRenderer x = runJSStore x jsNum jsString jsBool jsNull
                   (jsDic . map (fmap toRenderer))
 
 ----------------------------------------------------------------------------
+
+{- | 手抜きなJSONパーサ
+
+FIXME: 文字列と数値をもうちょっと真面目にパースする事
+
+>>> Text.Parsec.parse (jsonParser :: Text.Parsec.String.Parser Data.JSON.Tagless.JSRenderer) "foo" "{\"abc\" : [1,2,3] }"
+-}
 
 jsonParser :: (TokenParsing n, JSON js) => n js
 jsonParser = spaces *> valueParser where
