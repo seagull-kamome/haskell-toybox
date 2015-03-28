@@ -29,7 +29,8 @@ library
                        Relation.Binary.Equational,
                        Algebra.Classes,
                        Data.FFI.String,
-                       Data.List.Strange
+                       Data.List.Strange,
+                       Data.JSON.Tagless
   -- other-modules:
   -- other-extensions:    
   build-depends:       base >=4.6 && <4.8,
@@ -40,7 +41,11 @@ library
                        free >= 4.9,
                        minioperational >= 0.4.9,
                        stm >= 2.2,
-                       hashtables >= 1.1
+                       hashtables >= 1.1,
+                       text >= 1.1,
+                       parsec >= 3.0,
+                       parsers >= 0.11
+
   -- hs-source-dirs:      
   default-language:    Haskell2010
   ghc-options: -Wall
@@ -57,8 +62,9 @@ executable objective-alt
                        free >= 4.9,
                        minioperational >= 0.4.9,
                        stm >= 2.2,
-                       extensible-effects >= 1.8
- 
+                       extensible-effects >= 1.8,
+                       text >= 1.1
+
 executable remote
   main-is: Remote.hs
   ghc-options: -Wall
