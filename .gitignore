@@ -2,6 +2,7 @@
 ## Eclipse
 #################
 
+TAGS
 *.pydevproject
 .project
 .metadata
