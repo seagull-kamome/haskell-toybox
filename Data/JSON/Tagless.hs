@@ -1,4 +1,4 @@
-{-# LANGUAGE RankNTypes, ScopedTypeVariables #-}
+{-# LANGUAGE RankNTypes #-}
 module Data.JSON.Tagless where
 
 import Control.Applicative
@@ -71,9 +71,8 @@ toRenderer x = runJSStore x jsNum jsString jsBool jsNull
 
 ----------------------------------------------------------------------------
 
-jsonParser :: forall n js. (TokenParsing n, JSON js) => n js
+jsonParser :: (TokenParsing n, JSON js) => n js
 jsonParser = spaces *> valueParser where
-  valueParser :: (TokenParsing n, JSON js) => n js
   valueParser =     jsDic <$> (between (symbolic '{') (symbolic '}') $
                         commaSep $ ((,) <$> stringLiteral <* symbolic ':' <*> valueParser) )
                 <|> jsArray <$> (between (symbolic '[') (symbolic ']') $ commaSep valueParser)
