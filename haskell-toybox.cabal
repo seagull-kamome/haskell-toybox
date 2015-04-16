@@ -30,10 +30,12 @@ library
                        Algebra.Classes,
                        Data.FFI.String,
                        Data.List.Strange,
-                       Data.JSON.Tagless
+                       Data.JSON.Tagless,
+                       Data.Type.List,
+                       Data.Type.List.Index
   -- other-modules:
   -- other-extensions:    
-  build-depends:       base >=4.6 && <4.8,
+  build-depends:       base >=4.6 && <4.9,
                        transformers >= 0.3,
                        bifunctors >= 4.0,
                        profunctors >= 4.0,
@@ -54,7 +56,7 @@ executable objective-alt
   main-is: Objective-alt.hs
   default-language:    Haskell2010
   ghc-options: -Wall
-  build-depends:       base >=4.6 && <4.8,
+  build-depends:       base >=4.6 && <4.9,
                        transformers >= 0.3,
                        bifunctors >= 4.0,
                        profunctors >= 4.0,
@@ -69,5 +71,5 @@ executable remote
   main-is: Remote.hs
   ghc-options: -Wall
   default-language: Haskell2010
-  build-depends:      base >= 4.6 && <4.8,
+  build-depends:      base >= 4.6 && <4.9,
                       text >= 1.1
