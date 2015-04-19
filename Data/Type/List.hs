@@ -11,6 +11,7 @@ module Data.Type.List (
   Elem, Remove,
   Length, IndexOf, Member, Is, InstanceOf,
   Lookup, Filter,
+  Reverse, Concat, Partition,
   Data.Type.List.length
   ) where
 
@@ -75,6 +76,9 @@ type family Remove e l where
   Remove e (e ': l) = l
   Remove e (f ': l) = (f ': Remove e l)
 
+
+
+
 ----------------------------------------------------------------------------
 
 type family Lookup e l where
@@ -84,6 +88,19 @@ type family Lookup e l where
 type family Filter p l where
   Filter p '[] = '[]
   Filter p (x ': l) = If (p x) (x ': Filter p l) (Filter p l)
+
+type family Reverse l where
+  Reverse '[] = '[]
+  Reverse (x ': l) = Reverse l :++ '[x]
+
+type family Concat l where
+  Concat '[] = '[]
+  Concat (x ': l) = x :++ Concat l
+
+type Partition f l = Partition' '[] '[] f l
+type family Partition' xs ys f l where
+  Partition' xs ys f '[] = '(xs, ys)
+  Partition' xs ys f (e ': l) = If (f e) (Partition' (xs :++ '[e]) ys f l) (Partition' xs (ys :++ '[e]) f l)
 
 ----------------------------------------------------------------------------
 
